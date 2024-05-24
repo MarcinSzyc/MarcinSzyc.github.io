@@ -1,29 +1,24 @@
-function calc(expr) {
-    const exprArr = expr.split(' ');
-    const stack = []
-    for (let i = 0; i < exprArr.length; i++) {
-      let element = exprArr[i];
-      if (!isNaN(element)) {
-        stack.push(element);
-        continue;
-      }
-      let last = parseInt(stack.pop());
-      let bLast = parseInt(stack.pop());
-      if (element === '+') {
-        stack.push(last + bLast);
-      }
-      if (element === '-') {
-        stack.push(bLast - last); 
-      }
-      if (element === '*') {
-        stack.push(last * bLast);
-      }
-      if (element === '/') {
-        stack.push(bLast/last);
-      }
-    }
-    console.log(stack[0]);
-    return stack[0];
-  }
+function addEventListeners() {
+  const clc = document.querySelector('.cancel');
+  const arr = document.querySelector('.arr_container');
+  const left_container = document.querySelector('.left_container');
 
-  calc("1 3 +");
+  arr.addEventListener('click', () => {
+      arr.classList.add('active_arr');
+      if (left_container.classList.contains('off')) {
+          left_container.classList.remove('off');
+          left_container.classList.add('active');
+      }
+  });
+  clc.addEventListener('click', () => {
+      arr.classList.remove('active_arr');
+      if (left_container.classList.contains('active')) {
+          left_container.classList.remove('active');
+          left_container.classList.add('off');
+      }
+  })
+}
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  addEventListeners()
+});
