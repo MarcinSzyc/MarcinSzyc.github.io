@@ -1,14 +1,8 @@
 {
   "name": "businesscardpage",
-  "version": "1.0.0",
-  "description": "Business Card",
-  "main": "index.js",
-  "scripts": {
-    "compile": "sass scss/main.scss style/main.css"
-  },
+  "version": "2.0.0",
+  "description": "Marcin Szyc - business card page. Static HTML/CSS/JS, no build step.",
+  "private": true,
   "author": "Marcin Szyc",
-  "license": "ISC",
-  "devDependencies": {
-    "sass": "^1.77.2"
-  }
+  "license": "ISC"
 }

@@ -1,24 +1,12 @@
-function addEventListeners() {
-  const clc = document.querySelector('.cancel');
-  const arr = document.querySelector('.arr_container');
-  const left_container = document.querySelector('.left_container');
+// Pointer-tracked spotlight on the bento tiles. Everything else is CSS.
+const wantsMotion = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
 
-  arr.addEventListener('click', () => {
-      arr.classList.add('active_arr');
-      if (left_container.classList.contains('off')) {
-          left_container.classList.remove('off');
-          left_container.classList.add('active');
-      }
-  });
-  clc.addEventListener('click', () => {
-      arr.classList.remove('active_arr');
-      if (left_container.classList.contains('active')) {
-          left_container.classList.remove('active');
-          left_container.classList.add('off');
-      }
-  })
+if (wantsMotion) {
+  for (const tile of document.querySelectorAll('.tile')) {
+    tile.addEventListener('pointermove', ({ clientX, clientY }) => {
+      const { left, top } = tile.getBoundingClientRect();
+      tile.style.setProperty('--mx', `${clientX - left}px`);
+      tile.style.setProperty('--my', `${clientY - top}px`);
+    });
+  }
 }
-
-window.addEventListener('DOMContentLoaded', (event) => {
-  addEventListeners()
-});
